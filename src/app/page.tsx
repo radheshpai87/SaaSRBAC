@@ -113,18 +113,15 @@ export default async function LandingPage() {
             </Link>
 
             {/* Nav Links */}
-            <div className="hidden lg:flex items-center gap-5 text-xs text-zinc-400 font-medium">
-              <a href="#features" className="hover:text-zinc-100 transition-colors">
-                Platform
-              </a>
+            <div className="hidden md:flex items-center gap-5 text-xs text-zinc-400 font-medium">
               <a href="#how-it-works" className="hover:text-zinc-100 transition-colors">
                 Workflows
               </a>
+              <a href="#features" className="hover:text-zinc-100 transition-colors">
+                Platform
+              </a>
               <a href="#security" className="hover:text-zinc-100 transition-colors">
                 Security & RBAC
-              </a>
-              <a href="#architecture" className="hover:text-zinc-100 transition-colors">
-                Architecture
               </a>
             </div>
           </div>
@@ -394,60 +391,23 @@ export default async function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-850 bg-zinc-950 py-12 text-xs text-zinc-500">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-            <div className="space-y-3 col-span-2 md:col-span-1">
-              <div className="flex items-center gap-2">
-                <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-zinc-800 text-white text-xs font-bold border border-zinc-700">
-                  N
-                </div>
-                <span className="font-bold text-white">Nova Desk</span>
-              </div>
-              <p className="text-xs text-zinc-400 leading-relaxed">
-                Enterprise IT hardware, software licensing, and access request platform.
-              </p>
+      <footer className="border-t border-zinc-800/80 bg-zinc-950 py-6 text-xs text-zinc-500">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-5 w-5 items-center justify-center rounded bg-zinc-900 text-white text-[10px] font-bold border border-zinc-800">
+              N
             </div>
-
-            <div className="space-y-2.5">
-              <p className="font-semibold text-zinc-200 text-xs">Product</p>
-              <ul className="space-y-1.5 text-zinc-400">
-                <li><a href="#features" className="hover:text-white transition-colors">Catalog</a></li>
-                <li><a href="#how-it-works" className="hover:text-white transition-colors">Approval Queues</a></li>
-                <li><a href="#security" className="hover:text-white transition-colors">Audit Logging</a></li>
-              </ul>
-            </div>
-
-            <div className="space-y-2.5">
-              <p className="font-semibold text-zinc-200 text-xs">Deployment</p>
-              <ul className="space-y-1.5 text-zinc-400">
-                <li><Link href="/login" className="hover:text-white transition-colors">Docker Setup</Link></li>
-                <li><Link href="/login" className="hover:text-white transition-colors">Self-Hosting</Link></li>
-                <li><Link href="/login" className="hover:text-white transition-colors">PostgreSQL Sync</Link></li>
-              </ul>
-            </div>
-
-            <div className="space-y-2.5">
-              <p className="font-semibold text-zinc-200 text-xs">Security</p>
-              <ul className="space-y-1.5 text-zinc-400">
-                <li><a href="#security" className="hover:text-white transition-colors">RBAC Matrix</a></li>
-                <li><a href="#security" className="hover:text-white transition-colors">SOC2 Compliance</a></li>
-                <li><a href="#security" className="hover:text-white transition-colors">Session Verification</a></li>
-              </ul>
-            </div>
+            <span className="font-semibold text-zinc-300">Nova Desk</span>
+            <span className="text-zinc-700">•</span>
+            <span>Enterprise IT Equipment & Access Platform</span>
           </div>
 
-          <div className="pt-6 border-t border-zinc-850 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-zinc-500">
-            <div>
-              &copy; {new Date().getFullYear()} Nova Desk. Crafted for enterprise speed and security.
-            </div>
-            <div className="flex items-center gap-4">
-              <span>Next.js 15</span>
-              <span>•</span>
-              <span>PostgreSQL</span>
-              <span>•</span>
-              <span>Docker Ready</span>
-            </div>
+          <div className="flex items-center gap-3 text-[11px] text-zinc-500">
+            <span>Next.js 15</span>
+            <span className="text-zinc-700">•</span>
+            <span>PostgreSQL</span>
+            <span className="text-zinc-700">•</span>
+            <span>Docker Ready</span>
           </div>
         </div>
       </footer>
