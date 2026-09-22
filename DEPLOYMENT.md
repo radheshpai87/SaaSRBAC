@@ -1,10 +1,10 @@
-# Nova Desk — Home Server Deployment Guide 🚀
+# Nova Desk — Home Server Deployment Guide
 
 This guide explains how to deploy **Nova Desk** on your home server using **Docker** and **Docker Compose**, with support for custom domains, reverse proxies (Caddy, Nginx, Traefik), and Cloudflare Tunnels.
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 
 - **Docker** (`>= 24.0.0`)
 - **Docker Compose** (`>= v2.20.0`)
@@ -12,7 +12,7 @@ This guide explains how to deploy **Nova Desk** on your home server using **Dock
 
 ---
 
-## ⚡ Quick Start (Docker Compose)
+## Quick Start (Docker Compose)
 
 ### 1. Clone the Repository
 ```bash
@@ -62,7 +62,7 @@ Open your browser at `http://<YOUR_SERVER_IP>:3000` or your configured domain.
 
 ---
 
-## 🌐 Reverse Proxy Configuration
+## Reverse Proxy Configuration
 
 ### Option A: Caddy (Recommended for Auto-HTTPS)
 Add this to your `Caddyfile`:
@@ -105,7 +105,7 @@ In your Cloudflare Zero Trust dashboard:
 
 ---
 
-## 💾 Backup & Data Persistence
+## Backup & Data Persistence
 
 All embedded database states and uploaded artifacts are stored in the named Docker volume `novadesk-data`.
 
@@ -121,7 +121,7 @@ docker run --rm -v novadesk_novadesk-data:/data -v $(pwd):/backup alpine tar xzf
 
 ---
 
-## 🔄 Updates & Maintenance
+## Updates & Maintenance
 
 To update to the latest version:
 ```bash

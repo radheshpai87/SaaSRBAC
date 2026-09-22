@@ -50,7 +50,7 @@ export function UsersManagementTable({
   // New user form state
   const [newName, setNewName] = useState("");
   const [newEmail, setNewEmail] = useState("");
-  const [newPassword, setNewPassword] = useState("Password123!");
+  const [newPassword, setNewPassword] = useState("");
   const [newRole, setNewRole] = useState<RoleType>("USER");
   const [newDept, setNewDept] = useState("Engineering");
   const [isCreating, setIsCreating] = useState(false);

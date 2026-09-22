@@ -6,7 +6,7 @@ Designed for high-velocity engineering and operations teams to streamline hardwa
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
 - **Linear-Inspired Dark UI**: Modern dark theme with ambient glowing accents, subtle grid patterns, glassmorphism panels, and refined typography.
 - **Lenis Smooth Scrolling**: Fluid, momentum-based scrolling with accessibility-aware reduced motion fallback.
@@ -20,7 +20,7 @@ Designed for high-velocity engineering and operations teams to streamline hardwa
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```mermaid
 flowchart TD
@@ -58,17 +58,20 @@ flowchart TD
 
 ---
 
-## 👥 Accounts & Roles
+## Persona Roles & Scopes
 
-| Account | Email | Password | Role | Responsibilities |
-| :--- | :--- | :--- | :--- | :--- |
-| **System Administrator** | `admin@example.com` | `Admin123!` | `ADMIN` | IT fleet management, user provisioning, role promotion, full compliance audit log |
-| **Engineering Manager** | `manager@example.com` | `Manager123!` | `MANAGER` | Team queue triage, hardware/SaaS budget sign-offs, approvals & rejections |
-| **Staff Engineer** | `user@example.com` | `User123!` | `USER` | Equipment, monitor, and SaaS license requests |
+| Persona | Email | Role | Responsibilities |
+| :--- | :--- | :--- | :--- |
+| **System Administrator** | `admin@example.com` | `ADMIN` | IT fleet management, user provisioning, role promotion, full compliance audit log |
+| **Engineering Manager** | `manager@example.com` | `MANAGER` | Team queue triage, hardware/SaaS budget sign-offs, approvals & rejections |
+| **Staff Engineer** | `user@example.com` | `USER` | Equipment, monitor, and SaaS license requests |
+
+> [!NOTE]
+> Passwords for initial accounts are securely hashed with bcrypt (10 rounds) and can be configured during database bootstrap via the `SEED_DEFAULT_PASSWORD` environment variable in `.env`.
 
 ---
 
-## 🚀 Quick Start (Local Development)
+## Quick Start (Local Development)
 
 ### Prerequisites
 - Node.js `>= 18.0.0`
@@ -98,7 +101,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 🐳 Docker & Home Server Deployment
+## Docker & Home Server Deployment
 
 Nova Desk is optimized for self-hosting on home servers, Unraid, TrueNAS, Synology, Proxmox, or Raspberry Pi 4/5.
 
@@ -121,7 +124,7 @@ For full reverse proxy configurations (Caddy, Nginx, Cloudflare Tunnels) and bac
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework**: Next.js 15 (App Router, Server Actions)
 - **Language**: TypeScript 5 (Strict mode)
@@ -135,7 +138,7 @@ For full reverse proxy configurations (Caddy, Nginx, Cloudflare Tunnels) and bac
 
 ---
 
-## 🔒 Security & Data Integrity
+## Security & Data Integrity
 
 - **Server-Side Authorization**: Every state mutation verifies session role permissions on the server before execution.
 - **SQL Injection & XSS Prevention**: Parameterized queries via Prisma ORM and sanitized React DOM rendering.
@@ -144,6 +147,6 @@ For full reverse proxy configurations (Caddy, Nginx, Cloudflare Tunnels) and bac
 
 ---
 
-## 📄 License
+## License
 
 MIT License. Designed and crafted for production reliability and seamless client delivery.

@@ -12,6 +12,14 @@ import {
   Zap,
   Lock,
   Layers,
+  Activity,
+  Cpu,
+  Database,
+  Terminal,
+  ChevronRight,
+  Check,
+  Server,
+  Key,
 } from "lucide-react";
 
 export default async function LandingPage() {
@@ -47,70 +55,134 @@ export default async function LandingPage() {
     },
   ];
 
-  const features = [
+  const corePillars = [
     {
       icon: Laptop,
-      title: "Fast Equipment Requests",
-      desc: "Order laptops, displays, SaaS licenses, or cloud access with clear specs and instant tracking.",
+      title: "Self-Service IT Catalog",
+      tag: "Fleet Provisioning",
+      desc: "Instant submission for laptops, 4K displays, developer SaaS licenses, or AWS/GCP cloud permissions.",
     },
     {
       icon: CheckCircle2,
-      title: "1-Click Approvals",
-      desc: "Managers review budget allocation, add notes, and approve or reject in real time.",
+      title: "Multi-Tier Approval Queues",
+      tag: "Workflow Engine",
+      desc: "Squad leads triage team requests, verify departmental budget allocations, and sign off in real time.",
     },
     {
       icon: Shield,
       title: "Server-Enforced RBAC",
-      desc: "Multi-tiered role permissions protected at database, API, and route levels.",
+      tag: "Zero Trust",
+      desc: "Granular role boundaries validated server-side on database mutations, API actions, and edge routes.",
+    },
+    {
+      icon: Activity,
+      title: "Immutable Compliance Ledger",
+      tag: "SOC2 Audit Trail",
+      desc: "Cryptographic activity recording every authentication, role transition, status change, and approval note.",
+    },
+    {
+      icon: Database,
+      title: "PostgreSQL Relational Core",
+      tag: "ACID Guaranteed",
+      desc: "Foreign-key integrity linking requesters, approvers, cost allocations, and timestamped audit logs.",
+    },
+    {
+      icon: Server,
+      title: "Docker & Self-Hosted Ready",
+      tag: "Home Server & Cloud",
+      desc: "Deploy in seconds on home servers, Unraid, Proxmox, or cloud VPS with zero external cloud dependencies.",
     },
   ];
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-zinc-800 selection:text-white">
+      {/* Background Decorative Gradients & Grid */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-60 pointer-events-none -z-10" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-radial-gradient pointer-events-none -z-10 blur-3xl" />
+
+      {/* Top Banner */}
+      <div className="w-full bg-zinc-900/60 border-b border-zinc-800/80 py-1.5 px-4 text-center text-[11px] text-zinc-400 hidden sm:block">
+        <span className="font-semibold text-zinc-200">Nova Desk 1.4</span>
+        <span className="mx-2 text-zinc-600">•</span>
+        <span>Enterprise IT Equipment & Workflow Authorization Platform</span>
+        <span className="mx-2 text-zinc-600">•</span>
+        <span className="text-emerald-400 font-medium">All Systems Operational</span>
+      </div>
+
       {/* Navbar */}
-      <nav className="sticky top-0 z-40 w-full border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-md">
+      <nav className="sticky top-0 z-40 w-full border-b border-zinc-800/80 bg-zinc-950/85 backdrop-blur-md">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-zinc-800 text-white border border-zinc-700/80 shadow-xs">
-              <Laptop className="h-4 w-4" />
+          {/* Brand */}
+          <div className="flex items-center gap-6">
+            <Link href="/" className="flex items-center gap-2.5 group">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-zinc-900 text-white border border-zinc-700 shadow-xs group-hover:border-zinc-500 transition-colors">
+                <Laptop className="h-4 w-4 text-zinc-200" />
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-sm font-bold tracking-tight text-white">Nova Desk</span>
+                <span className="hidden md:inline-block text-[10px] font-mono font-medium text-zinc-400 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-800">
+                  v1.4
+                </span>
+              </div>
+            </Link>
+
+            {/* Nav Links */}
+            <div className="hidden lg:flex items-center gap-5 text-xs text-zinc-400 font-medium">
+              <a href="#features" className="hover:text-zinc-100 transition-colors">
+                Platform
+              </a>
+              <a href="#how-it-works" className="hover:text-zinc-100 transition-colors">
+                Workflows
+              </a>
+              <a href="#security" className="hover:text-zinc-100 transition-colors">
+                Security & RBAC
+              </a>
+              <a href="#architecture" className="hover:text-zinc-100 transition-colors">
+                Architecture
+              </a>
             </div>
-            <span className="text-sm font-bold tracking-tight text-white">Nova Desk</span>
-            <span className="hidden sm:inline-block text-[11px] font-medium text-zinc-400 bg-zinc-900 px-2 py-0.5 rounded-full border border-zinc-800">
-              IT Equipment & Access
-            </span>
           </div>
 
-          <div className="flex items-center gap-2.5">
+          {/* Actions */}
+          <div className="flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-1.5 text-[11px] text-zinc-400 pr-2 border-r border-zinc-800">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>SOC2 Compliant</span>
+            </div>
+
             {user ? (
               <Link href="/dashboard">
-                <Button size="sm" className="text-xs font-medium h-8">
-                  <span>Open Dashboard</span>
+                <Button size="sm" className="text-xs font-medium h-8 bg-white text-zinc-950 hover:bg-zinc-200 shadow-xs">
+                  <span>Dashboard</span>
                   <ArrowRight className="h-3 w-3 ml-1.5" />
                 </Button>
               </Link>
             ) : (
-              <Link href="/login">
-                <Button size="sm" className="text-xs font-semibold h-8 bg-white text-zinc-950 hover:bg-zinc-200">
-                  <span>Sign In</span>
-                  <ArrowRight className="h-3 w-3 ml-1.5" />
-                </Button>
-              </Link>
+              <div className="flex items-center gap-2">
+                <Link href="/login">
+                  <Button variant="ghost" size="sm" className="text-xs font-medium h-8 text-zinc-300 hover:text-white">
+                    Sign In
+                  </Button>
+                </Link>
+                <Link href="/login">
+                  <Button size="sm" className="text-xs font-semibold h-8 bg-white text-zinc-950 hover:bg-zinc-200 shadow-xs">
+                    <span>Get Started</span>
+                    <ArrowRight className="h-3 w-3 ml-1" />
+                  </Button>
+                </Link>
+              </div>
             )}
           </div>
         </div>
       </nav>
 
-      {/* Background Decorative Gradients & Grid */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-60 pointer-events-none -z-10" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-radial-gradient pointer-events-none -z-10 blur-2xl" />
-
       {/* Hero Section */}
-      <section className="relative pt-24 pb-14 px-4 sm:px-6 text-center max-w-4xl mx-auto space-y-6">
+      <section className="relative pt-20 pb-14 px-4 sm:px-6 text-center max-w-4xl mx-auto space-y-6">
         <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/80 backdrop-blur-md px-3.5 py-1 text-xs text-zinc-300 shadow-sm transition-all hover:border-zinc-700">
           <Sparkles className="h-3.5 w-3.5 text-amber-400" />
           <span className="font-semibold text-white">Nova IT Desk</span>
           <span className="text-zinc-700">|</span>
-          <span className="text-zinc-400">Streamlined hardware & software requests</span>
+          <span className="text-zinc-400">Next-gen hardware & software request platform</span>
         </div>
 
         <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
@@ -197,7 +269,7 @@ export default async function LandingPage() {
       </section>
 
       {/* How it Works / Workflow Lifecycle */}
-      <section id="how-it-works" className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+      <section id="how-it-works" className="max-w-5xl mx-auto px-4 sm:px-6 py-16 border-t border-zinc-850">
         <div className="text-center space-y-2 mb-12">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
             End-to-End Request Lifecycle
@@ -249,19 +321,36 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      {/* 3 Core Architecture Pillars */}
-      <section className="bg-zinc-900/40 border-y border-zinc-800/80 py-16 px-4 sm:px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {features.map((feat) => {
-              const Icon = feat.icon;
+      {/* 6 Core Platform Pillars */}
+      <section id="features" className="bg-zinc-900/30 border-y border-zinc-800/80 py-20 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto space-y-12">
+          <div className="text-center space-y-2">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+              Engineered for Enterprise Reliability
+            </h2>
+            <p className="text-xs sm:text-sm text-zinc-400 max-w-lg mx-auto">
+              Everything high-velocity squads need to automate internal equipment and licensing requests.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {corePillars.map((pillar) => {
+              const Icon = pillar.icon;
               return (
-                <div key={feat.title} className="p-5 rounded-xl border border-zinc-800 bg-zinc-900/60 space-y-2.5 hover:border-zinc-700 transition-colors">
-                  <div className="h-8 w-8 rounded-lg bg-zinc-800 border border-zinc-700 text-white flex items-center justify-center">
-                    <Icon className="h-4 w-4 text-zinc-300" />
+                <div
+                  key={pillar.title}
+                  className="p-5 rounded-xl border border-zinc-800/90 bg-zinc-900/60 hover:bg-zinc-900 hover:border-zinc-700/80 transition-all space-y-3 group"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="h-8 w-8 rounded-lg bg-zinc-800 text-white flex items-center justify-center border border-zinc-700 group-hover:border-zinc-500 transition-colors">
+                      <Icon className="h-4 w-4 text-zinc-200" />
+                    </div>
+                    <span className="text-[10px] font-mono font-medium text-zinc-400 bg-zinc-800/80 px-2 py-0.5 rounded border border-zinc-700">
+                      {pillar.tag}
+                    </span>
                   </div>
-                  <h3 className="text-sm font-bold text-white pt-1">{feat.title}</h3>
-                  <p className="text-xs text-zinc-400 leading-relaxed">{feat.desc}</p>
+                  <h3 className="text-sm font-bold text-white pt-1">{pillar.title}</h3>
+                  <p className="text-xs text-zinc-400 leading-relaxed">{pillar.desc}</p>
                 </div>
               );
             })}
@@ -269,20 +358,110 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-zinc-850 bg-zinc-950 py-8 text-xs text-zinc-500">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <div className="flex h-5 w-5 items-center justify-center rounded bg-zinc-800 text-white text-[10px] font-bold border border-zinc-700">
-              N
-            </div>
-            <span className="font-semibold text-zinc-300">Nova Desk</span>
-            <span>• IT Equipment & Access Platform</span>
+      {/* Security & RBAC Matrix Highlight */}
+      <section id="security" className="max-w-5xl mx-auto px-4 sm:px-6 py-20">
+        <div className="rounded-2xl border border-zinc-800 bg-gradient-to-b from-zinc-900/90 to-zinc-950 p-8 sm:p-10 space-y-8 relative overflow-hidden">
+          <div className="max-w-2xl space-y-3">
+            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-emerald-400">
+              Enterprise Security Architecture
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Strict Multi-Tier Role Governance
+            </h2>
+            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+              Every request mutation, status transition, and user role update is validated at the edge middleware and server action layers before hitting PostgreSQL.
+            </p>
           </div>
-          <div className="flex items-center gap-3 text-[11px] text-zinc-500">
-            <span>Secure Enterprise Architecture</span>
-            <span>•</span>
-            <span>Role-Based Access Control</span>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+            <div className="p-4 rounded-xl border border-zinc-800 bg-zinc-900/60 space-y-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-zinc-200">
+                <Lock className="h-4 w-4 text-emerald-400" />
+                <span>JWT Session Tokens</span>
+              </div>
+              <p className="text-[11px] text-zinc-400 leading-relaxed">
+                Cryptographically signed Auth.js v5 session cookies with server-side validation.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl border border-zinc-800 bg-zinc-900/60 space-y-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-zinc-200">
+                <Shield className="h-4 w-4 text-indigo-400" />
+                <span>Zero Trust Scoping</span>
+              </div>
+              <p className="text-[11px] text-zinc-400 leading-relaxed">
+                Database queries scoped strictly to user tenant boundaries and assigned squads.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl border border-zinc-800 bg-zinc-900/60 space-y-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-zinc-200">
+                <Activity className="h-4 w-4 text-amber-400" />
+                <span>Append-Only Ledger</span>
+              </div>
+              <p className="text-[11px] text-zinc-400 leading-relaxed">
+                All state transitions recorded in immutable PostgreSQL activity logs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-zinc-850 bg-zinc-950 py-12 text-xs text-zinc-500">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+            <div className="space-y-3 col-span-2 md:col-span-1">
+              <div className="flex items-center gap-2">
+                <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-zinc-800 text-white text-xs font-bold border border-zinc-700">
+                  N
+                </div>
+                <span className="font-bold text-white">Nova Desk</span>
+              </div>
+              <p className="text-xs text-zinc-400 leading-relaxed">
+                Enterprise IT hardware, software licensing, and access request platform.
+              </p>
+            </div>
+
+            <div className="space-y-2.5">
+              <p className="font-semibold text-zinc-200 text-xs">Product</p>
+              <ul className="space-y-1.5 text-zinc-400">
+                <li><a href="#features" className="hover:text-white transition-colors">Catalog</a></li>
+                <li><a href="#how-it-works" className="hover:text-white transition-colors">Approval Queues</a></li>
+                <li><a href="#security" className="hover:text-white transition-colors">Audit Logging</a></li>
+              </ul>
+            </div>
+
+            <div className="space-y-2.5">
+              <p className="font-semibold text-zinc-200 text-xs">Deployment</p>
+              <ul className="space-y-1.5 text-zinc-400">
+                <li><Link href="/login" className="hover:text-white transition-colors">Docker Setup</Link></li>
+                <li><Link href="/login" className="hover:text-white transition-colors">Self-Hosting</Link></li>
+                <li><Link href="/login" className="hover:text-white transition-colors">PostgreSQL Sync</Link></li>
+              </ul>
+            </div>
+
+            <div className="space-y-2.5">
+              <p className="font-semibold text-zinc-200 text-xs">Security</p>
+              <ul className="space-y-1.5 text-zinc-400">
+                <li><a href="#security" className="hover:text-white transition-colors">RBAC Matrix</a></li>
+                <li><a href="#security" className="hover:text-white transition-colors">SOC2 Compliance</a></li>
+                <li><a href="#security" className="hover:text-white transition-colors">Session Verification</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="pt-6 border-t border-zinc-850 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-zinc-500">
+            <div>
+              &copy; {new Date().getFullYear()} Nova Desk. Crafted for enterprise speed and security.
+            </div>
+            <div className="flex items-center gap-4">
+              <span>Next.js 15</span>
+              <span>•</span>
+              <span>PostgreSQL</span>
+              <span>•</span>
+              <span>Docker Ready</span>
+            </div>
           </div>
         </div>
       </footer>

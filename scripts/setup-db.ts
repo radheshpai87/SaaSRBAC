@@ -22,9 +22,10 @@ async function setup() {
   console.log("[DB] Database schema verified.");
 
   console.log("[DB] Populating Nova IT Desk records...");
-  const adminPassword = await bcrypt.hash("Admin123!", 10);
-  const managerPassword = await bcrypt.hash("Manager123!", 10);
-  const userPassword = await bcrypt.hash("User123!", 10);
+  const defaultPassword = process.env.SEED_DEFAULT_PASSWORD || "NovaDesk_Secure_2026!";
+  const adminPassword = await bcrypt.hash(process.env.SEED_ADMIN_PASSWORD || defaultPassword, 10);
+  const managerPassword = await bcrypt.hash(process.env.SEED_MANAGER_PASSWORD || defaultPassword, 10);
+  const userPassword = await bcrypt.hash(process.env.SEED_USER_PASSWORD || defaultPassword, 10);
 
   // Clear existing
   await db.exec(`

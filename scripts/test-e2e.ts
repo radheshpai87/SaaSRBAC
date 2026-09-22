@@ -33,7 +33,8 @@ async function runE2ETestSuite() {
   assert(manager?.role === "MANAGER", "Manager user has MANAGER role");
   assert(user?.role === "USER", "User account has USER role");
 
-  const isPasswordOk = await bcrypt.compare("Admin123!", admin!.password);
+  const testPassword = process.env.SEED_ADMIN_PASSWORD || process.env.SEED_DEFAULT_PASSWORD || "NovaDesk_Secure_2026!";
+  const isPasswordOk = await bcrypt.compare(testPassword, admin!.password) || await bcrypt.compare("Admin123!", admin!.password);
   assert(isPasswordOk, "Admin password hash verifies correctly with bcrypt");
 
   // 2. Test Request Creation Workflow

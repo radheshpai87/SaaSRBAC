@@ -37,9 +37,10 @@ async function main() {
     ],
   });
 
-  const adminPassword = await bcrypt.hash("Admin123!", 10);
-  const managerPassword = await bcrypt.hash("Manager123!", 10);
-  const userPassword = await bcrypt.hash("User123!", 10);
+  const defaultSeedPassword = process.env.SEED_DEFAULT_PASSWORD || "NovaDesk_Secure_2026!";
+  const adminPassword = await bcrypt.hash(process.env.SEED_ADMIN_PASSWORD || defaultSeedPassword, 10);
+  const managerPassword = await bcrypt.hash(process.env.SEED_MANAGER_PASSWORD || defaultSeedPassword, 10);
+  const userPassword = await bcrypt.hash(process.env.SEED_USER_PASSWORD || defaultSeedPassword, 10);
 
   console.log("[SEED] Creating Enterprise Users...");
   const adminUser = await prisma.user.create({
