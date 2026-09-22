@@ -6,7 +6,7 @@ services:
     container_name: novadesk-app
     restart: unless-stopped
     ports:
-      - "${PORT:-3000}:3000"
+      - "127.0.0.1:${PORT:-3000}:3000"
     environment:
       - NODE_ENV=production
       - AUTH_SECRET=${AUTH_SECRET:-novadesk_production_auth_secret_key_32chars}
