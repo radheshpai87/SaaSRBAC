@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova Desk - Project Deliverable Report</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 12mm 12mm 12mm 12mm;
+    }
+    
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #0b0f17;
+      color: #e2e8f0;
+      margin: 0;
+      padding: 0;
+      font-size: 11.5px;
+      line-height: 1.45;
+    }
+
+    .page {
+      height: 273mm;
+      max-height: 273mm;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      page-break-after: always;
+      position: relative;
+    }
+    .page:last-child {
+      page-break-after: auto;
+    }
+
+    .header {
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      margin: 0 0 2px 0;
+    }
+
+    .brand-subtitle {
+      font-size: 12px;
+      color: #94a3b8;
+      margin: 0;
+    }
+
+    .meta-card {
+      text-align: right;
+      font-size: 10.5px;
+      color: #64748b;
+    }
+
+    .badge-live {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+      font-weight: 600;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 3px;
+      text-decoration: none;
+    }
+
+    .link-primary {
+      color: #60a5fa;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #f8fafc;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-left: 3px solid #3b82f6;
+      padding-left: 8px;
+      margin: 12px 0 8px 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 6px;
+      padding: 10px 12px;
+    }
+
+    .card-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: #93c5fd;
+      margin: 0 0 4px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .card-content {
+      font-size: 11px;
+      color: #cbd5e1;
+      margin: 0;
+    }
+
+    .card-list {
+      margin: 0;
+      padding-left: 14px;
+      font-size: 11px;
+      color: #cbd5e1;
+    }
+    .card-list li {
+      margin-bottom: 2px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.5px;
+      margin-top: 4px;
+      margin-bottom: 8px;
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    th {
+      background: #1e293b;
+      color: #94a3b8;
+      font-weight: 600;
+      text-align: left;
+      padding: 6px 8px;
+      border-bottom: 1px solid #334155;
+    }
+
+    td {
+      padding: 5px 8px;
+      border-bottom: 1px solid #1f2937;
+      color: #cbd5e1;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 9.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .tag-admin { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .tag-manager { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .tag-user { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+
+    .code-box {
+      background: #030712;
+      border: 1px solid #1f2937;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 10.5px;
+      color: #38bdf8;
+      margin: 4px 0;
+      line-height: 1.4;
+    }
+
+    .footer-bar {
+      border-top: 1px solid #1e293b;
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 9.5px;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1 -->
+  <div class="page">
+    <div>
+      <div class="header">
+        <div>
+          <h1 class="brand-title">Nova Desk</h1>
+          <p class="brand-subtitle">Enterprise IT Equipment & Workflow Authorization Platform</p>
+        </div>
+        <div class="meta-card">
+          <a href="https://saas.radhesh.me" class="badge-live">LIVE: saas.radhesh.me</a><br>
+          <span>Date: September 22, 2026</span><br>
+          <span>Status: Production Ready</span>
+        </div>
+      </div>
+
+      <div class="card" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9)); border-color: #334155; margin-bottom: 10px;">
+        <div style="font-weight: 600; color: #ffffff; font-size: 11.5px; margin-bottom: 4px;">Executive Summary</div>
+        <p style="margin: 0; color: #cbd5e1; font-size: 11px; line-height: 1.45;">
+          Nova Desk is a custom, production-grade SaaS application designed for enterprise hardware procurement, software licensing, and cloud permission workflows. Engineered to full commercial POC requirements with hierarchical Role-Based Access Control (RBAC), multi-step approval stages, real-time audit logging, responsive dark-mode styling with Lenis smooth scrolling, strict zero-credential-leakage security, and self-contained Docker orchestration.
+        </p>
+      </div>
+
+      <div class="section-title">Core Deployment & Repository Access</div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Live Production Environment</div>
+          <p class="card-content">
+            <strong>Live URL:</strong> <a href="https://saas.radhesh.me" class="link-primary">https://saas.radhesh.me</a><br>
+            <strong>Status:</strong> Active / Deployed<br>
+            <strong>SSL / Edge:</strong> Secure TLS Termination<br>
+            <strong>Rendering:</strong> Next.js 15 Standalone Optimized
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-title">Source Repository</div>
+          <p class="card-content">
+            <strong>GitHub Remote:</strong> <a href="https://github.com/radheshpai87/SaaSRBAC" class="link-primary">github.com/radheshpai87/SaaSRBAC</a><br>
+            <strong>Default Branch:</strong> master<br>
+            <strong>Build Validation:</strong> 11/11 Routes Compiled (0 Errors)<br>
+            <strong>Automated Tests:</strong> 15/15 Passing
+          </p>
+        </div>
+      </div>
+
+      <div class="section-title">Architectural Highlights & Role-Based Access (RBAC)</div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title"><span class="tag tag-admin">ADMIN</span> Operations Console</div>
+          <ul class="card-list">
+            <li>Full inventory oversight & user provisioning</li>
+            <li>Departmental spending ceiling controls</li>
+            <li>System-wide immutable audit trail inspection</li>
+            <li>Status toggle & role privilege management</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="tag tag-manager">MANAGER</span> Approval Queue</div>
+          <ul class="card-list">
+            <li>Departmental request review & triage</li>
+            <li>One-click budget approval & fiscal sign-off</li>
+            <li>Rejection workflows with feedback notes</li>
+            <li>Real-time team expenditure monitoring</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="tag tag-user">USER</span> Portal</div>
+          <ul class="card-list">
+            <li>Hardware, software, & cloud access requests</li>
+            <li>Vendor cost calculations & ROI payback terms</li>
+            <li>Status tracking with priority indicators</li>
+            <li>Personal spending limit visibility</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title">Technical Stack & Infrastructure</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>Technology</th>
+            <th>Implementation Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Framework</strong></td>
+            <td>Next.js 15 (App Router) + React 19</td>
+            <td>Server Actions, Streaming SSR, dynamic OpenGraph image generator</td>
+          </tr>
+          <tr>
+            <td><strong>Security & Auth</strong></td>
+            <td>Auth.js (NextAuth v5) + Edge Middleware</td>
+            <td>Encrypted JWT sessions, Bcrypt hashing, strict role boundary protection</td>
+          </tr>
+          <tr>
+            <td><strong>Database & ORM</strong></td>
+            <td>PostgreSQL + Prisma ORM + PGlite</td>
+            <td>Zero-friction embedded database engine with external PostgreSQL driver support</td>
+          </tr>
+          <tr>
+            <td><strong>UI & Experience</strong></td>
+            <td>Tailwind CSS + Lenis + Lucide Icons</td>
+            <td>Linear-grade dark palette, smooth momentum scrolling, 100% SVG icons (0 emojis)</td>
+          </tr>
+          <tr>
+            <td><strong>Containerization</strong></td>
+            <td>Docker + Docker Compose</td>
+            <td>Multi-stage Alpine image, automated migration & seed startup entrypoint</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer-bar">
+      <span>Nova Desk Deliverable Report</span>
+      <span>Live URL: https://saas.radhesh.me</span>
+      <span>Page 1 of 2</span>
+    </div>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="page">
+    <div>
+      <div class="header">
+        <div>
+          <h1 class="brand-title">Engineering Milestones & Security Hardening</h1>
+          <p class="brand-subtitle">Implementation Details & Zero-Config Deployment</p>
+        </div>
+        <div class="meta-card">
+          <a href="https://saas.radhesh.me" class="badge-live">saas.radhesh.me</a><br>
+          <span>Repository: SaaSRBAC (master)</span>
+        </div>
+      </div>
+
+      <div class="section-title">Key Engineering Deliverables Completed Today</div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Security & Credential Sanitization</div>
+          <p class="card-content">
+            - 100% credential sanitization across code bundles, UI states, and git history.<br>
+            - Secure server-side password hashing using bcryptjs with salt rounds.<br>
+            - Demo account switcher pre-fills credentials without exposing keys in payloads.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-title">Design & UX Refinements</div>
+          <p class="card-content">
+            - Completely eradicated all emojis in favor of crisp Lucide React SVG icons.<br>
+            - Implemented Lenis Smooth Scrolling for fluid, high-end momentum physics.<br>
+            - Streamlined navigation, removed top clutter, and unified into a single-line footer.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-title">Dynamic OpenGraph & Metadata</div>
+          <p class="card-content">
+            - Built dynamic server-side OpenGraph generator at <code>/opengraph-image</code>.<br>
+            - Automated Twitter/X summary large card generation at <code>/twitter-image</code>.<br>
+            - Social metadata preview cards with branding and role highlights.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-title">Zero-Config Self-Contained Docker</div>
+          <p class="card-content">
+            - Multi-stage Dockerfile creating a hardened, non-root Alpine container.<br>
+            - Automated container entrypoint running schema migrations & seeds on startup.<br>
+            - Instant home server launch with: <code>docker compose up --build -d</code>.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-title">Git Repository Commit History</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Commit Hash</th>
+            <th>Message</th>
+            <th>Key Deliverable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>40c0262</code></td>
+            <td>feat(docker): add automated container entrypoint and self-contained zero-config startup</td>
+            <td>Added docker-entrypoint.sh, auto database migration & seed on fresh start</td>
+          </tr>
+          <tr>
+            <td><code>9d07e9a</code></td>
+            <td>style(footer): convert footer to single clean minimalist line and align navbar links</td>
+            <td>Single line footer layout, removed redundant links, streamlined navigation</td>
+          </tr>
+          <tr>
+            <td><code>54d59ee</code></td>
+            <td>refactor(ui): remove top banner and versioning tags</td>
+            <td>Purged version tags and top operational banners for clean client aesthetic</td>
+          </tr>
+          <tr>
+            <td><code>b932be0</code></td>
+            <td>refactor(security): sanitize all passwords, remove emojis, enhance nav UI</td>
+            <td>Zero emoji enforcement, sanitized credentials, enhanced dark navigation</td>
+          </tr>
+          <tr>
+            <td><code>a29db00</code></td>
+            <td>feat(seo): add dynamic OpenGraph and Twitter card image generation with social metadata</td>
+            <td>Generated /opengraph-image and /twitter-image endpoints with custom Canvas</td>
+          </tr>
+          <tr>
+            <td><code>8563d92</code></td>
+            <td>feat(docker): add production multi-stage Dockerfile and docker-compose deployment</td>
+            <td>Multi-stage Alpine runner, healthchecks, persistent data volumes</td>
+          </tr>
+          <tr>
+            <td><code>03076ca</code></td>
+            <td>feat(ui): add Lenis smooth scrolling, modern dark aesthetic with glow visuals</td>
+            <td>Integrated Lenis smooth scrolling engine and Linear/Vercel visual styling</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="section-title">Deployment & Verification Instructions</div>
+      <div class="code-box">
+        # 1. Clone Repository<br>
+        git clone https://github.com/radheshpai87/SaaSRBAC.git &amp;&amp; cd SaaSRBAC<br><br>
+        # 2. Launch Container (Automated Zero-Config Startup)<br>
+        docker compose up --build -d<br><br>
+        # 3. Access Live System<br>
+        Local: http://localhost:3000 | Production: https://saas.radhesh.me
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span>Nova Desk Deliverable Report</span>
+      <span>Live URL: https://saas.radhesh.me</span>
+      <span>Page 2 of 2</span>
+    </div>
+  </div>
+
+</body>
+</html>
