@@ -36,23 +36,24 @@ ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
 # Non-root system user for security
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-# Copy built application and dependencies
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/prisma.config.ts ./prisma.config.ts
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/scripts ./scripts
-COPY --from=builder /app/docker-entrypoint.sh ./docker-entrypoint.sh
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
 # Set up data directories with write permissions for persistent embedded PGlite storage
 RUN mkdir -p /app/prisma/pgdata /app/data && \
-    chmod +x /app/docker-entrypoint.sh && \
-    chown -R nextjs:nodejs /app
+    chown -R nextjs:nodejs /app/prisma /app/data
+
+# Copy built application and dependencies with ownership set during copy (instant, avoids slow chown)
+COPY --chown=nextjs:nodejs --from=builder /app/public ./public
+COPY --chown=nextjs:nodejs --from=builder /app/package.json ./package.json
+COPY --chown=nextjs:nodejs --from=builder /app/prisma ./prisma
+COPY --chown=nextjs:nodejs --from=builder /app/prisma.config.ts ./prisma.config.ts
+COPY --chown=nextjs:nodejs --from=builder /app/node_modules ./node_modules
+COPY --chown=nextjs:nodejs --from=builder /app/.next ./.next
+COPY --chown=nextjs:nodejs --from=builder /app/scripts ./scripts
+COPY --chown=nextjs:nodejs --from=builder /app/docker-entrypoint.sh ./docker-entrypoint.sh
+
+RUN chmod +x /app/docker-entrypoint.sh
 
 USER nextjs
 

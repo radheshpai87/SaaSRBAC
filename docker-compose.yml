@@ -10,6 +10,7 @@ services:
     environment:
       - NODE_ENV=production
       - AUTH_SECRET=${AUTH_SECRET:-novadesk_production_auth_secret_key_32chars}
+      - AUTH_TRUST_HOST=true
       - NEXTAUTH_URL=${NEXTAUTH_URL:-http://localhost:3000}
       - DATABASE_URL=${DATABASE_URL:-}
     volumes:
