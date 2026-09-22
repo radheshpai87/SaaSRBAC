@@ -26,17 +26,19 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "/",
+    url: "https://saas.radhesh.me",
     title: "Nova Desk — IT Equipment & Access Platform",
     description:
       "Modern IT equipment, software licenses, and access requests with 1-click approvals and immutable audit trails.",
     siteName: "Nova Desk",
     images: [
       {
-        url: "/opengraph-image.png",
-        width: 1896,
-        height: 1065,
+        url: "https://saas.radhesh.me/og.png",
+        secureUrl: "https://saas.radhesh.me/og.png",
+        width: 1200,
+        height: 630,
         alt: "Nova Desk Platform Preview",
+        type: "image/png",
       },
     ],
   },
@@ -45,7 +47,7 @@ export const metadata: Metadata = {
     title: "Nova Desk — IT Equipment & Access Platform",
     description:
       "Modern IT equipment, software licenses, and access requests with 1-click approvals and immutable audit trails.",
-    images: ["/twitter-image.png"],
+    images: ["https://saas.radhesh.me/og.png"],
   },
   robots: {
     index: true,
