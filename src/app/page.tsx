@@ -100,15 +100,6 @@ export default async function LandingPage() {
       <div className="absolute inset-0 bg-grid-pattern opacity-60 pointer-events-none -z-10" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-radial-gradient pointer-events-none -z-10 blur-3xl" />
 
-      {/* Top Banner */}
-      <div className="w-full bg-zinc-900/60 border-b border-zinc-800/80 py-1.5 px-4 text-center text-[11px] text-zinc-400 hidden sm:block">
-        <span className="font-semibold text-zinc-200">Nova Desk 1.4</span>
-        <span className="mx-2 text-zinc-600">•</span>
-        <span>Enterprise IT Equipment & Workflow Authorization Platform</span>
-        <span className="mx-2 text-zinc-600">•</span>
-        <span className="text-emerald-400 font-medium">All Systems Operational</span>
-      </div>
-
       {/* Navbar */}
       <nav className="sticky top-0 z-40 w-full border-b border-zinc-800/80 bg-zinc-950/85 backdrop-blur-md">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -118,12 +109,7 @@ export default async function LandingPage() {
               <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-zinc-900 text-white border border-zinc-700 shadow-xs group-hover:border-zinc-500 transition-colors">
                 <Laptop className="h-4 w-4 text-zinc-200" />
               </div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-sm font-bold tracking-tight text-white">Nova Desk</span>
-                <span className="hidden md:inline-block text-[10px] font-mono font-medium text-zinc-400 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-800">
-                  v1.4
-                </span>
-              </div>
+              <span className="text-sm font-bold tracking-tight text-white">Nova Desk</span>
             </Link>
 
             {/* Nav Links */}
