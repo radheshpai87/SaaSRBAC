@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import bcrypt from "bcryptjs";
 
-const DATA_DIR = path.resolve(process.cwd(), "prisma/pgdata");
+const DATA_DIR = process.env.PG_DATA_DIR || process.env.DATA_DIR || path.resolve(process.cwd(), "prisma/pgdata");
 const MIGRATION_FILE = path.resolve(process.cwd(), "prisma/migrations/0_init/migration.sql");
 
 async function setup() {

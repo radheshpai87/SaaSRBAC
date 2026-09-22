@@ -11,12 +11,12 @@ services:
       - "${PORT:-3000}:3000"
     environment:
       - NODE_ENV=production
-      - AUTH_SECRET=${AUTH_SECRET:-changeme_random_secure_hex_string_32_chars}
+      - AUTH_SECRET=${AUTH_SECRET:-novadesk_production_auth_secret_key_32chars}
       - NEXTAUTH_URL=${NEXTAUTH_URL:-http://localhost:3000}
-      - DATABASE_URL=${DATABASE_URL:-postgresql://postgres:postgres@localhost:5432/novadesk}
+      - DATABASE_URL=${DATABASE_URL:-}
     volumes:
       # Persistent storage directory for app data & embedded database state
-      - novadesk-data:/app/data
+      - novadesk-data:/app/prisma/pgdata
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
       interval: 30s

@@ -15,8 +15,8 @@ function getPrismaClient(): PrismaClient {
     return globalForDb.prisma;
   }
 
-  const dbUrl = process.env.DATABASE_URL;
-  const isExternalPg = dbUrl && !dbUrl.includes("54320") && !dbUrl.includes("localhost:54320");
+  const dbUrl = process.env.DATABASE_URL?.trim();
+  const isExternalPg = dbUrl && dbUrl !== "" && !dbUrl.includes("54320") && !dbUrl.includes("localhost:54320") && !dbUrl.startsWith("file:");
 
   if (isExternalPg) {
     try {
@@ -31,7 +31,7 @@ function getPrismaClient(): PrismaClient {
   }
 
   // Zero-friction persistent embedded PostgreSQL
-  const dataDir = String(path.resolve(process.cwd(), "prisma/pgdata"));
+  const dataDir = String(process.env.PG_DATA_DIR || process.env.DATA_DIR || path.resolve(process.cwd(), "prisma/pgdata"));
   const pglite = globalForDb.pglite || new PGlite(dataDir);
   if (process.env.NODE_ENV !== "production") {
     globalForDb.pglite = pglite;

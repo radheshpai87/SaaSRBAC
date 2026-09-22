@@ -47,16 +47,20 @@ COPY --from=builder /app/prisma.config.ts ./prisma.config.ts
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/scripts ./scripts
+COPY --from=builder /app/docker-entrypoint.sh ./docker-entrypoint.sh
 
 # Set up data directories with write permissions for persistent embedded PGlite storage
-RUN mkdir -p /app/data && chown -R nextjs:nodejs /app/data /app/.next
+RUN mkdir -p /app/prisma/pgdata /app/data && \
+    chmod +x /app/docker-entrypoint.sh && \
+    chown -R nextjs:nodejs /app
 
 USER nextjs
 
 EXPOSE 3000
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
   CMD wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1
 
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
 CMD ["npm", "start"]
