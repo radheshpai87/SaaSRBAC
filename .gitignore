@@ -42,3 +42,7 @@ prisma/pgdata
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Generated PDFs & Reports
+*.pdf
+
