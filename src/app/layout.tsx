@@ -3,8 +3,45 @@ import "./globals.css";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 
 export const metadata: Metadata = {
-  title: "Nova Desk | IT Equipment & Access Platform",
-  description: "Modern IT hardware, software licensing, and access request platform with role-based approvals.",
+  metadataBase: new URL(process.env.NEXTAUTH_URL || "http://localhost:3000"),
+  title: {
+    default: "Nova Desk | IT Equipment & Access Platform",
+    template: "%s | Nova Desk",
+  },
+  description:
+    "Enterprise IT hardware, software licensing, and access request platform with role-based approvals and audit compliance.",
+  keywords: [
+    "SaaS",
+    "IT Desk",
+    "Equipment Requests",
+    "Role-Based Access Control",
+    "RBAC",
+    "Workflow Approval",
+    "Audit Trail",
+    "Next.js 15",
+    "PostgreSQL",
+  ],
+  authors: [{ name: "Nova Desk Team" }],
+  creator: "Nova Desk",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    title: "Nova Desk — IT Equipment & Access Platform",
+    description:
+      "Modern IT equipment, software licenses, and access requests with 1-click approvals and immutable audit trails.",
+    siteName: "Nova Desk",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nova Desk — IT Equipment & Access Platform",
+    description:
+      "Modern IT equipment, software licenses, and access requests with 1-click approvals and immutable audit trails.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
