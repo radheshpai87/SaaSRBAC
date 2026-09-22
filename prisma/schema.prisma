@@ -1,0 +1,106 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum RoleType {
+  ADMIN
+  MANAGER
+  USER
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum RequestPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+model User {
+  id               String        @id @default(cuid())
+  name             String
+  email            String        @unique
+  password         String
+  role             RoleType      @default(USER)
+  status           UserStatus    @default(ACTIVE)
+  department       String?       @default("Engineering & Infrastructure")
+  jobTitle         String?       @default("Capital Project Lead")
+  spendingLimit    Float?        @default(50000.0)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  createdRequests  Request[]     @relation("CreatedBy")
+  assignedRequests Request[]     @relation("AssignedTo")
+  activityLogs     ActivityLog[]
+
+  @@index([email])
+  @@index([role])
+  @@index([status])
+}
+
+model Request {
+  id               String          @id @default(cuid())
+  title            String
+  description      String          @db.Text
+  category         String?         @default("Data Center & Cloud Infrastructure")
+  priority         RequestPriority @default(MEDIUM)
+  status           RequestStatus   @default(PENDING)
+  estimatedCost    Float?          @default(0.0)
+  costCenter       String?         @default("GL-7040-INFRA")
+  vendorName       String?         @default("Amazon Web Services / Equinix")
+  paybackMonths    Int?            @default(12)
+  reviewNotes      String?         @db.Text
+  fiscalResolution String?
+  
+  createdById      String
+  createdBy        User            @relation("CreatedBy", fields: [createdById], references: [id], onDelete: Cascade)
+  
+  assignedToId     String?
+  assignedTo       User?           @relation("AssignedTo", fields: [assignedToId], references: [id], onDelete: SetNull)
+  
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+  @@index([createdById])
+  @@index([assignedToId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model ActivityLog {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  action     String
+  entityType String
+  entityId   String
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+  @@index([action])
+  @@index([entityType])
+  @@index([createdAt])
+}
+
+model Role {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  permissions Json?
+  createdAt   DateTime @default(now())
+}
