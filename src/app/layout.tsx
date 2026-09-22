@@ -31,12 +31,21 @@ export const metadata: Metadata = {
     description:
       "Modern IT equipment, software licenses, and access requests with 1-click approvals and immutable audit trails.",
     siteName: "Nova Desk",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1896,
+        height: 1065,
+        alt: "Nova Desk Platform Preview",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Nova Desk — IT Equipment & Access Platform",
     description:
       "Modern IT equipment, software licenses, and access requests with 1-click approvals and immutable audit trails.",
+    images: ["/twitter-image.png"],
   },
   robots: {
     index: true,
