@@ -16,6 +16,12 @@ export const authConfig: NextAuthConfig = {
         pathname === "/" ||
         pathname.startsWith("/api/auth") ||
         pathname.startsWith("/_next") ||
+        pathname.includes("opengraph-image") ||
+        pathname.includes("twitter-image") ||
+        pathname.endsWith(".png") ||
+        pathname.endsWith(".jpg") ||
+        pathname.endsWith(".svg") ||
+        pathname.endsWith(".ico") ||
         pathname.includes("favicon.ico");
 
       if (!isLoggedIn && !isPublic) {
